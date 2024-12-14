@@ -1,0 +1,6 @@
+.table-row {
+    background-color: #141B29;
+    &:hover {
+    background-color: #00524C;
+}
+}
