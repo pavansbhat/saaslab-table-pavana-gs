@@ -3,7 +3,8 @@ import { useState } from "react";
 import "./customTable.css";
 import { Pagination } from "./Pagination.jsx";
 
-export const CustomTable = ({ data, loading, error, onPageChange }) => {
+// eslint-disable-next-line react/prop-types
+export const CustomTable = ({ data, loading, error }) => {
   const columns = ["Sl.No", "Percentage funded", "Amount pledged"];
   const itemsPerPage = 5;
 

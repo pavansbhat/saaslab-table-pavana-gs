@@ -2,6 +2,9 @@ import { useState } from "react";
 import "./App.css";
 import useFetcher from "./utils/useFetcher.js";
 import { CustomTable } from "./components/CustomTable.jsx";
+import { injectSpeedInsights } from "@vercel/speed-insights";
+
+injectSpeedInsights();
 
 function App() {
   const { data, error, loading } = useFetcher(
