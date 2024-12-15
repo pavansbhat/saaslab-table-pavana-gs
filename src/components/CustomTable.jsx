@@ -27,11 +27,16 @@ export const CustomTable = ({ data, loading, error }) => {
       <div className="custom-table-container">
         {loading && <p>Loading...</p>}
         {error && <p style={{ color: "red" }}>{error}</p>}
-        <table className="custom-table">
+        <table className="custom-table" role="table">
           <thead>
             <tr>
               {columns.map((column) => (
-                <th key={column} className={"table-header-row"} scope={"col"}>
+                <th
+                  key={column}
+                  className={"table-header-row"}
+                  scope={"col"}
+                  role="columnheader"
+                >
                   {column}
                 </th>
               ))}
@@ -40,10 +45,10 @@ export const CustomTable = ({ data, loading, error }) => {
           <tbody>
             {paginatedData &&
               paginatedData.map((item, itemIndex) => (
-                <tr className={"table-row"} key={itemIndex}>
-                  <td>{item["s.no"]}</td>
-                  <td>{item["amt.pledged"]}</td>
-                  <td>{item["percentage.funded"]}%</td>
+                <tr className={"table-row"} key={itemIndex} role="row">
+                  <td role="cell">{item["s.no"]}</td>
+                  <td role="cell">{item["amt.pledged"]}</td>
+                  <td role="cell">{item["percentage.funded"]}%</td>
                 </tr>
               ))}
           </tbody>
