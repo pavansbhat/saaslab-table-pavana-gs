@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import "./customTable.css";
+import { Pagination } from "./Pagination.jsx";
 
 export const CustomTable = ({ data, loading, error, onPageChange }) => {
   const columns = ["Sl.No", "Percentage funded", "Amount pledged"];
@@ -20,51 +21,38 @@ export const CustomTable = ({ data, loading, error, onPageChange }) => {
     }
   };
 
-  console.log(data, "DATA");
-
   return (
-    <div className="custom-table-container">
-      {loading && <p>Loading...</p>}
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      <table className="custom-table">
-        <thead>
-          <tr>
-            {columns.map((column) => (
-              <th key={column} scope={"col"}>
-                {column}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {paginatedData &&
-            paginatedData.map((item, itemIndex) => (
-              <tr className={"table-row"} key={itemIndex}>
-                <td>{item["s.no"]}</td>
-                <td>{item["amt.pledged"]}</td>
-                <td>{item["percentage.funded"]}%</td>
-              </tr>
-            ))}
-        </tbody>
-      </table>
-
-      <div className="pagination">
-        <button
-          onClick={() => handlePageChange(currentPage - 1)}
-          disabled={currentPage === 1}
-        >
-          Previous
-        </button>
-        <span>
-          Page {currentPage} of {totalPages}
-        </span>
-        <button
-          onClick={() => handlePageChange(currentPage + 1)}
-          disabled={currentPage === totalPages}
-        >
-          Next
-        </button>
+    <div className="table-section">
+      <div className="custom-table-container">
+        {loading && <p>Loading...</p>}
+        {error && <p style={{ color: "red" }}>{error}</p>}
+        <table className="custom-table">
+          <thead>
+            <tr>
+              {columns.map((column) => (
+                <th key={column} className={"table-header-row"} scope={"col"}>
+                  {column}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {paginatedData &&
+              paginatedData.map((item, itemIndex) => (
+                <tr className={"table-row"} key={itemIndex}>
+                  <td>{item["s.no"]}</td>
+                  <td>{item["amt.pledged"]}</td>
+                  <td>{item["percentage.funded"]}%</td>
+                </tr>
+              ))}
+          </tbody>
+        </table>
       </div>
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        handlePageChange={handlePageChange}
+      />
     </div>
   );
 };
